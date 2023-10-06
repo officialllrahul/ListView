@@ -31,23 +31,28 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
 
-  static List<String> fruitname =['Apple','Banana','Mango','Orange','pineapple','Apple','Banana','Mango','Orange','pineapple'];
+  static List<String> fruitname =['Abhishek','Neha','Bobby','Abhimanyu','Ritika','Priyesh','Priyanshu','Neha','Abhinav','Ritik'];
 
-  static List url = ['https://www.applesfromny.com/wp-content/uploads/2020/05/Jonagold_NYAS-Apples2.png',
-    'https://cdn.mos.cms.futurecdn.net/42E9as7NaTaAi4A6JcuFwG-1200-80.jpg',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/220px-Hapus_Mango.jpg',
-    'https://5.imimg.com/data5/VN/YP/MY-33296037/orange-600x600-500x500.jpg',
-    'https://5.imimg.com/data5/GJ/MD/MY-35442270/fresh-pineapple-500x500.jpg',
-    'https://www.applesfromny.com/wp-content/uploads/2020/05/Jonagold_NYAS-Apples2.png',
-    'https://cdn.mos.cms.futurecdn.net/42E9as7NaTaAi4A6JcuFwG-1200-80.jpg',
-    'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/220px-Hapus_Mango.jpg',
-    'https://5.imimg.com/data5/VN/YP/MY-33296037/orange-600x600-500x500.jpg',
-    'https://5.imimg.com/data5/GJ/MD/MY-35442270/fresh-pineapple-500x500.jpg'];
+  static List url =['assets/pic-1.png','assets/pic-2.png','assets/pic-3.png','assets/pic-1.png','assets/pic-2.png','assets/pic-3.png','assets/pic-1.png','assets/pic-2.png','assets/pic-3.png','assets/pic-1.png'];
+
+  static List<String> desc =['Web Developer','App Developer','React Developer','Android Developer','Php Developer','App Developer','WordPress Developer','React Developer','Flutter Developer','Web Developer'];
+
+  //below list is used for network images
+  // static List url = ['https://www.applesfromny.com/wp-content/uploads/2020/05/Jonagold_NYAS-Apples2.png',
+  //   'https://cdn.mos.cms.futurecdn.net/42E9as7NaTaAi4A6JcuFwG-1200-80.jpg',
+  //   'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/220px-Hapus_Mango.jpg',
+  //   'https://5.imimg.com/data5/VN/YP/MY-33296037/orange-600x600-500x500.jpg',
+  //   'https://5.imimg.com/data5/GJ/MD/MY-35442270/fresh-pineapple-500x500.jpg',
+  //   'https://www.applesfromny.com/wp-content/uploads/2020/05/Jonagold_NYAS-Apples2.png',
+  //   'https://cdn.mos.cms.futurecdn.net/42E9as7NaTaAi4A6JcuFwG-1200-80.jpg',
+  //   'https://upload.wikimedia.org/wikipedia/commons/thumb/9/90/Hapus_Mango.jpg/220px-Hapus_Mango.jpg',
+  //   'https://5.imimg.com/data5/VN/YP/MY-33296037/orange-600x600-500x500.jpg',
+  //   'https://5.imimg.com/data5/GJ/MD/MY-35442270/fresh-pineapple-500x500.jpg'];
 
   final List<FruitDataModel> Fruitdata = List.generate(
       fruitname.length,
           (index)
-      => FruitDataModel('${fruitname[index]}', '${url[index]}','${fruitname[index]}'));
+      => FruitDataModel('${fruitname[index]}', '${url[index]}','${desc[index]}'));
 
   @override
   Widget build(BuildContext context) {
@@ -59,10 +64,15 @@ class _MyHomePageState extends State<MyHomePage> {
               return Card(
                 child: ListTile(
                   title: Text(Fruitdata[index].name),
+                  subtitle: Text(Fruitdata[index].desc),
                   leading: SizedBox(
                     width: 50,
                     height: 50,
-                    child: Image.network(Fruitdata[index].ImageUrl),
+                    child:CircleAvatar(
+                      backgroundImage: AssetImage(Fruitdata[index].ImageUrl),
+                    ),
+                    //below line is used for network images
+                    // child: Image.network(Fruitdata[index].ImageUrl),
                   ),
                   onTap: (){
                     Navigator.of(context).push(MaterialPageRoute(builder: (context)=>FruitDetail(fruitDataModel: Fruitdata[index],)));

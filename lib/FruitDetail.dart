@@ -11,14 +11,25 @@ class FruitDetail extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: Text(fruitDataModel.name),),
-      body: Column(
-        children: [
-          Image.network(fruitDataModel.ImageUrl),
-          SizedBox(
-            height: 10,
+      body: Padding(
+        padding: const EdgeInsets.fromLTRB(0,50,0,0),
+        child: Center(
+          child: Column(
+            children: [
+              CircleAvatar(
+                radius: 50,
+                backgroundImage: AssetImage(fruitDataModel.ImageUrl)
+              ),
+              //below line is used for network Image
+              // Image.network(fruitDataModel.ImageUrl),
+              SizedBox(
+                height: 10,
+              ),
+              Text(fruitDataModel.name,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),),
+              Text(fruitDataModel.desc,style: TextStyle(fontSize: 15,color: Colors.grey),),
+            ],
           ),
-          Text(fruitDataModel.desc,style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20),)
-        ],
+        ),
       ),
     );
   }
